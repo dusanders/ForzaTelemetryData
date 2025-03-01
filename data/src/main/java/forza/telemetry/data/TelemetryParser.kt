@@ -239,6 +239,7 @@ class TelemetryParser private constructor(
         )
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun <T : Number> parseBytesOrDefault(type: KClass<T>): T {
         if (!buffer.hasRemaining()) {
             return 0 as T;
