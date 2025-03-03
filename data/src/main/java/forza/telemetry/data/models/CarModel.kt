@@ -4,6 +4,8 @@ import forza.telemetry.data.ForzaConstants
 import forza.telemetry.data.TelemetryData
 import forza.telemetry.data.database.DatabaseService
 import forza.telemetry.data.database.FM8CarInfo
+import forza.telemetry.data.types.toKPH
+import forza.telemetry.data.types.toMPH
 
 class CarModel(val data: TelemetryData, databaseService: DatabaseService) {
     val id = data.carId
@@ -30,11 +32,11 @@ class CarModel(val data: TelemetryData, databaseService: DatabaseService) {
     }
 
     fun getSpeedMPH(): Float {
-        return speed * 2.23694f
+        return speed.toMPH()
     }
 
     fun getSpeedKPH(): Float {
-        return speed * 3.6f
+        return speed.toKPH()
     }
 
     fun getDrivetrain(): ForzaConstants.Drivetrain {

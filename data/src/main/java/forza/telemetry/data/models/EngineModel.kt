@@ -1,6 +1,7 @@
 package forza.telemetry.data.models
 
 import forza.telemetry.data.TelemetryData
+import forza.telemetry.data.types.toHorsepower
 
 data class EngineModel(val data: TelemetryData) {
     val currentRpm = data.currentEngineRpm
@@ -14,7 +15,7 @@ data class EngineModel(val data: TelemetryData) {
     val throttle = data.throttle
 
     fun getHorsepower(): Float {
-        return power * 0.00134102f
+        return power.toHorsepower()
     }
 
     fun getRoundedRpm(): Int {
