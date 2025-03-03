@@ -262,7 +262,7 @@ class TelemetryParser private constructor(
 
             Float::class ->
                 if (buffer.remaining() >= 4) {
-                    return buffer.getDouble() as T
+                    return buffer.getFloat() as T
                 }
 
             Byte::class ->
