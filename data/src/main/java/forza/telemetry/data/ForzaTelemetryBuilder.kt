@@ -3,6 +3,8 @@ package forza.telemetry.data
 import android.content.Context
 import android.util.Log
 import forza.telemetry.data.database.DatabaseService
+import java.net.SocketException
+import kotlin.jvm.Throws
 
 class ForzaTelemetryBuilder(private val port: Int, context: Context) {
     val _tag = "ForzaTelemetryBuilder";
@@ -12,8 +14,6 @@ class ForzaTelemetryBuilder(private val port: Int, context: Context) {
 
     init {
         database = DatabaseService(context)
-        val debug = database.getFM8CarInfo(247)
-        Log.d(_tag, "debug car ${debug?.id} ${debug?.name} - ${debug?.type}")
     }
 
     fun addListener(listener: ForzaInterface): ForzaTelemetryBuilder {

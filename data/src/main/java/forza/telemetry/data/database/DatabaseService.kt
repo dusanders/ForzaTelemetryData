@@ -26,7 +26,6 @@ class DatabaseService(val context: Context) {
             copyDbFile(path)
         }
         val database = openDatabase()
-        printDebugInfo(database)
         database.close()
     }
 
