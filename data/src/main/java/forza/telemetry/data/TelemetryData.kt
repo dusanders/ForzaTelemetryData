@@ -97,21 +97,4 @@ data class TelemetryData(
     var tireWearRearRight: Float = 0f,
     var trackID: Int = 0,
     val database: DatabaseService
-) {
-
-    fun speedMPH(): Float {
-        return speed * 2.23694f
-    }
-
-    fun speedKPH(): Float {
-        return speed * 3.6f
-    }
-
-    fun horsepower(): Float {
-        return power * 0.00134102f
-    }
-
-    fun celsius(temp: Float): Float {
-        return (((temp - 32) * 5) / 9)
-    }
-}
+)

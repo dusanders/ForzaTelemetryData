@@ -10,7 +10,7 @@ import kotlin.reflect.KClass
 class TelemetryParser private constructor(
     val buffLen: Int,
     bytes: ByteArray,
-    val databaseService: DatabaseService
+    private val databaseService: DatabaseService
 ) {
     companion object {
         const val DASH_PACKET_LEN: Int = 311
