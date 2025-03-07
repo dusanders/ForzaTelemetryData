@@ -252,7 +252,7 @@ class TelemetryParser private constructor(
 
             Long::class ->
                 if (buffer.remaining() >= 4) {
-                    return buffer.getLong() as T
+                    return Integer.toUnsignedLong(buffer.getInt()) as T
                 }
 
             Short::class ->
