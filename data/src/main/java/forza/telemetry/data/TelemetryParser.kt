@@ -1,6 +1,6 @@
 package forza.telemetry.data
 
-import forza.telemetry.data.database.DatabaseService
+import forza.telemetry.data.database.FM8DatabaseService
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.nio.ByteBuffer
@@ -10,7 +10,7 @@ import kotlin.reflect.KClass
 class TelemetryParser private constructor(
     val buffLen: Int,
     bytes: ByteArray,
-    private val databaseService: DatabaseService
+    private val FM8DatabaseService: FM8DatabaseService
 ) {
     companion object {
         const val DASH_PACKET_LEN: Int = 311
@@ -19,9 +19,9 @@ class TelemetryParser private constructor(
         fun Parse(
             buffLen: Int,
             bytes: ByteArray,
-            databaseService: DatabaseService
+            FM8DatabaseService: FM8DatabaseService
         ): TelemetryData {
-            val instance = TelemetryParser(buffLen, bytes, databaseService)
+            val instance = TelemetryParser(buffLen, bytes, FM8DatabaseService)
             return instance.doParseAsTelemetryData()
         }
     }
@@ -235,7 +235,7 @@ class TelemetryParser private constructor(
             tireWearRearLeft,
             tireWearRearRight,
             trackID,
-            databaseService
+            FM8DatabaseService
         )
     }
 

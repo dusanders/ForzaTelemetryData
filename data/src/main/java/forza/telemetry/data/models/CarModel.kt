@@ -2,12 +2,12 @@ package forza.telemetry.data.models
 
 import forza.telemetry.data.ForzaConstants
 import forza.telemetry.data.TelemetryData
-import forza.telemetry.data.database.DatabaseService
+import forza.telemetry.data.database.FM8DatabaseService
 import forza.telemetry.data.database.FM8CarInfo
 import forza.telemetry.data.types.toKPH
 import forza.telemetry.data.types.toMPH
 
-class CarModel(val data: TelemetryData, databaseService: DatabaseService) {
+class CarModel(val data: TelemetryData, FM8DatabaseService: FM8DatabaseService) {
     val id = data.carId
     val performanceIndex = data.carPerformanceIndex
     val speed = data.speed
@@ -27,7 +27,7 @@ class CarModel(val data: TelemetryData, databaseService: DatabaseService) {
 
     init {
         if(data.gameVersion == ForzaConstants.GameVersion.MOTORSPORT_8) {
-            fM8CarInfo = databaseService.getFM8CarInfo(data.carId)
+            fM8CarInfo = FM8DatabaseService.getFM8CarInfo(data.carId)
         }
     }
 

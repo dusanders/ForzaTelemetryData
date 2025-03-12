@@ -1,6 +1,6 @@
 package forza.telemetry.data
 
-import forza.telemetry.data.database.DatabaseService
+import forza.telemetry.data.database.FM8DatabaseService
 
 data class TelemetryData(
     val gameVersion: ForzaConstants.GameVersion,
@@ -96,5 +96,5 @@ data class TelemetryData(
     var tireWearRearLeft: Float = 0f,
     var tireWearRearRight: Float = 0f,
     var trackID: Int = 0,
-    val database: DatabaseService
+    val database: FM8DatabaseService
 )

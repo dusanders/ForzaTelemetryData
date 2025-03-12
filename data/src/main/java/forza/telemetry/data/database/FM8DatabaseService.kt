@@ -9,9 +9,9 @@ import java.io.InputStream
 import java.io.OutputStream
 
 
-class DatabaseService(val context: Context) {
+class FM8DatabaseService(val context: Context) {
     companion object {
-        private const val TAG = "DatabaseService"
+        private const val TAG = "FM8DatabaseService"
         private const val FM8_DATABASE_NAME = "FM8_GameData.sqlite3"
         private const val CARS_TABLE = "cars"
         private val CARS_COLUMNS = arrayOf("id", "name", "type")
@@ -149,6 +149,7 @@ class DatabaseService(val context: Context) {
                 query.getFloat(query.getColumnIndexOrThrow(TRACKS_COLUMNS[5]))
             )
         }
+        query.close()
         return result
     }
     fun getFM8CarInfo(carId: Int): FM8CarInfo? {
@@ -170,6 +171,7 @@ class DatabaseService(val context: Context) {
                 query.getString(query.getColumnIndexOrThrow(CARS_COLUMNS[2]))
             )
         }
+        query.close()
         return result;
     }
 }

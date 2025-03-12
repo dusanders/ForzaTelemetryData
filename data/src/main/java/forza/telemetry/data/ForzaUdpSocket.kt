@@ -2,7 +2,7 @@ package forza.telemetry.data
 
 import android.content.Context
 import android.util.Log
-import forza.telemetry.data.database.DatabaseService
+import forza.telemetry.data.database.FM8DatabaseService
 import forza.telemetry.data.types.ForzaUdpSocketEvents
 import java.net.DatagramPacket
 import java.net.DatagramSocket
@@ -48,7 +48,7 @@ class ForzaUdpSocket(
           // Allocate the largest expected bytes - FM8
           val receive = ByteArray(TelemetryParser.FM8_PACKET_LEN)
           val datagramPacket = DatagramPacket(receive, receive.size)
-          val databaseService = DatabaseService(context)
+          val FM8DatabaseService = FM8DatabaseService(context)
           while (!interrupted()) {
             // Read UDP socket
             try {
@@ -56,7 +56,7 @@ class ForzaUdpSocket(
               val data = TelemetryParser.Parse(
                 datagramPacket.length,
                 datagramPacket.data,
-                databaseService
+                FM8DatabaseService
               )
               eventHandler.onData(data)
             } catch (e: Exception) {
