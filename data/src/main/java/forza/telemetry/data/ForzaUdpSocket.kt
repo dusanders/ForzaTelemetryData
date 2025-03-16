@@ -48,16 +48,18 @@ class ForzaUdpSocket(
           // Allocate the largest expected bytes - FM8
           val receive = ByteArray(TelemetryParser.FM8_PACKET_LEN)
           val datagramPacket = DatagramPacket(receive, receive.size)
-          val FM8DatabaseService = FM8DatabaseService(context)
+          val fM8DatabaseService = FM8DatabaseService(context)
           while (!interrupted()) {
             // Read UDP socket
             try {
+//              Log.d(tag, "Waiting for packet on $boundPort")
               socket?.receive(datagramPacket)
               val data = TelemetryParser.Parse(
                 datagramPacket.length,
                 datagramPacket.data,
-                FM8DatabaseService
+                fM8DatabaseService
               )
+//              Log.d(tag, "Received ${datagramPacket.length} bytes")
               eventHandler.onData(data)
             } catch (e: Exception) {
               e.printStackTrace()

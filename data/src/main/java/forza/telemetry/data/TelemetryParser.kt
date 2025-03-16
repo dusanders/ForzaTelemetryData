@@ -10,7 +10,7 @@ import kotlin.reflect.KClass
 class TelemetryParser private constructor(
     val buffLen: Int,
     bytes: ByteArray,
-    private val FM8DatabaseService: FM8DatabaseService
+    private val fM8DatabaseService: FM8DatabaseService
 ) {
     companion object {
         const val DASH_PACKET_LEN: Int = 311
@@ -19,9 +19,9 @@ class TelemetryParser private constructor(
         fun Parse(
             buffLen: Int,
             bytes: ByteArray,
-            FM8DatabaseService: FM8DatabaseService
+            fM8DatabaseService: FM8DatabaseService
         ): TelemetryData {
-            val instance = TelemetryParser(buffLen, bytes, FM8DatabaseService)
+            val instance = TelemetryParser(buffLen, bytes, fM8DatabaseService)
             return instance.doParseAsTelemetryData()
         }
     }
@@ -142,6 +142,8 @@ class TelemetryParser private constructor(
             trackID = parseBytesOrDefault(Int::class)
         }
         return TelemetryData(
+            fM8DatabaseService,
+            buffer.array(),
             parseGameVersion(),
             isRaceOn,
             timeStampMS,
@@ -234,8 +236,7 @@ class TelemetryParser private constructor(
             tireWearFrontRight,
             tireWearRearLeft,
             tireWearRearRight,
-            trackID,
-            FM8DatabaseService
+            trackID
         )
     }
 
@@ -273,8 +274,8 @@ class TelemetryParser private constructor(
         return 0 as T;
     }
 
-    private fun toAngle(value: Float): Long {
-        return Math.round(value * 180 / Math.PI)
+    private fun toAngle(value: Float): Float {
+        return Math.round(value * 180 / Math.PI).toFloat()
     }
 
     private fun parseGameVersion(): ForzaConstants.GameVersion {

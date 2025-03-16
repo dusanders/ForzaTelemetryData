@@ -117,6 +117,7 @@ class FM8DatabaseService(val context: Context) {
     private fun printDebugInfo(db: SQLiteDatabase) {
         debugPrintTracks(db)
         debugPrintCars(db)
+        db.close()
     }
 
     private fun openDatabase(): SQLiteDatabase {
@@ -150,6 +151,7 @@ class FM8DatabaseService(val context: Context) {
             )
         }
         query.close()
+        database.close()
         return result
     }
     fun getFM8CarInfo(carId: Int): FM8CarInfo? {
@@ -172,6 +174,7 @@ class FM8DatabaseService(val context: Context) {
             )
         }
         query.close()
+        database.close()
         return result;
     }
 }

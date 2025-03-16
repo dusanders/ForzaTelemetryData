@@ -1,8 +1,12 @@
 package forza.telemetry.data
 
 import forza.telemetry.data.database.FM8DatabaseService
+import forza.telemetry.data.models.CarModel
+import forza.telemetry.data.models.TrackModel
 
-data class TelemetryData(
+class TelemetryData(
+    private val database: FM8DatabaseService,
+    val rawBytes: ByteArray,
     val gameVersion: ForzaConstants.GameVersion,
     val isRaceOn: Boolean,
     val timeStampMS: Long,
@@ -45,10 +49,10 @@ data class TelemetryData(
     val surfaceRumbleFrontRight: Float,
     val surfaceRumbleRearLeft: Float,
     val surfaceRumbleRearRight: Float,
-    val tireSlipAngleFrontLeft: Long,
-    val tireSlipAngleFrontRight: Long,
-    val tireSlipAngleRearLeft: Long,
-    val tireSlipAngleRearRight: Long,
+    val tireSlipAngleFrontLeft: Float,
+    val tireSlipAngleFrontRight: Float,
+    val tireSlipAngleRearLeft: Float,
+    val tireSlipAngleRearRight: Float,
     val tireCombinedSlipFrontLeft: Float,
     val tireCombinedSlipFrontRight: Float,
     val tireCombinedSlipRearLeft: Float,
@@ -96,5 +100,11 @@ data class TelemetryData(
     var tireWearRearLeft: Float = 0f,
     var tireWearRearRight: Float = 0f,
     var trackID: Int = 0,
-    val database: FM8DatabaseService
-)
+) {
+    fun getCarInfo(): CarModel {
+        return CarModel(this, database)
+    }
+    fun getTrackInfo(): TrackModel {
+        return TrackModel(this, database)
+    }
+}

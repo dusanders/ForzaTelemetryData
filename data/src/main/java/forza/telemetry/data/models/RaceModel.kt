@@ -2,14 +2,33 @@ package forza.telemetry.data.models
 
 import forza.telemetry.data.TelemetryData
 
-class RaceModel(val data: TelemetryData) {
-    val isRaceOn = data.isRaceOn
-    val distanceTraveled = data.distanceTraveled
-    val bestLap = data.bestLap
-    val lastLap = data.lastLap
-    val currentLap = data.currentLap
-    val currentRaceTime = data.currentRaceTime
-    val position = data.racePosition
-    val lapNumber = data.lapNumber
-    val timestampMS = data.timeStampMS
+data class RaceModel(
+    val isRaceOn: Boolean = false,
+    val distanceTraveled: Float = 0f,
+    val bestLap: Float = 0f,
+    val lastLap: Float = 0f,
+    val currentLap: Float = 0f,
+    val currentRaceTime: Float = 0f,
+    val position: Byte = 0,
+    val lapNumber: Short = 0,
+    val timestampMS: Long = 0
+) {
+    companion object {
+        fun fromTelemetryData(data: TelemetryData?): RaceModel {
+            if(data == null) {
+                return RaceModel()
+            }
+            return RaceModel(
+                isRaceOn = data.isRaceOn,
+                distanceTraveled = data.distanceTraveled,
+                bestLap = data.bestLap,
+                lastLap = data.lastLap,
+                currentLap = data.currentLap,
+                currentRaceTime = data.currentRaceTime,
+                position = data.racePosition,
+                lapNumber = data.lapNumber,
+                timestampMS = data.timeStampMS
+            )
+        }
+    }
 }

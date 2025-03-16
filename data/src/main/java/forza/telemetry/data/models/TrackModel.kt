@@ -5,34 +5,38 @@ import forza.telemetry.data.TelemetryData
 import forza.telemetry.data.database.FM8DatabaseService
 import forza.telemetry.data.database.FM8TrackInfo
 
-class TrackModel(val data: TelemetryData, FM8DatabaseService: FM8DatabaseService) {
-    val id = data.trackID
+class TrackModel
+internal constructor(
+  val data: TelemetryData,
+  fM8DatabaseService: FM8DatabaseService
+) {
+  val id = data.trackID
 
-    private var fm8TrackInfo: FM8TrackInfo? = null
+  private var fm8TrackInfo: FM8TrackInfo? = null
 
-    init {
-        if (data.gameVersion == ForzaConstants.GameVersion.MOTORSPORT_8) {
-            fm8TrackInfo = FM8DatabaseService.getFM8TrackInfo(data.trackID)
-        }
+  init {
+    if (data.gameVersion == ForzaConstants.GameVersion.MOTORSPORT_8) {
+      fm8TrackInfo = fM8DatabaseService.getFM8TrackInfo(data.trackID)
     }
+  }
 
-    fun getTrack(): String {
-        return fm8TrackInfo?.track ?: "-"
-    }
+  fun getTrack(): String {
+    return fm8TrackInfo?.track ?: "-"
+  }
 
-    fun getCircuit(): String {
-        return fm8TrackInfo?.circuit ?: "-"
-    }
+  fun getCircuit(): String {
+    return fm8TrackInfo?.circuit ?: "-"
+  }
 
-    fun getLengthKm(): Float {
-        return fm8TrackInfo?.lengthKm ?: 0F
-    }
+  fun getLengthKm(): Float {
+    return fm8TrackInfo?.lengthKm ?: 0F
+  }
 
-    fun getLocation(): String {
-        return fm8TrackInfo?.location ?: "-"
-    }
+  fun getLocation(): String {
+    return fm8TrackInfo?.location ?: "-"
+  }
 
-    fun getIocCode(): String {
-        return fm8TrackInfo?.iocCode ?: "-"
-    }
+  fun getIocCode(): String {
+    return fm8TrackInfo?.iocCode ?: "-"
+  }
 }
