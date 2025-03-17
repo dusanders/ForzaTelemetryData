@@ -21,7 +21,6 @@ class FM8DatabaseService(val context: Context) {
 
     init {
         val path = getNormalizedPath(FM8_DATABASE_NAME)
-        Log.d(TAG, "DB path: $path")
         if(!checkDbExists(path)) {
             copyDbFile(path)
         }
