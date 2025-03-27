@@ -13,7 +13,7 @@ data class SuspensionModel(
     val suspensionTravelMetersRearRight: Float = 0f
 ) {
     companion object {
-        fun fromTelemetryData(data: TelemetryData?): SuspensionModel? {
+        fun fromTelemetryData(data: TelemetryData?): SuspensionModel {
             if (data == null) {
                 return SuspensionModel()
             }
