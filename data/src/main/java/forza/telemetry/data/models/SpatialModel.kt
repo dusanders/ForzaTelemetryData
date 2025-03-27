@@ -21,7 +21,7 @@ data class SpatialModel(
 ) {
 
   companion object {
-    fun fromTelemetryData(data: TelemetryData?): SpatialModel? {
+    fun fromTelemetryData(data: TelemetryData?): SpatialModel {
       if (data == null) {
         return SpatialModel()
       }

@@ -3,6 +3,7 @@ package forza.telemetry.data.models
 import forza.telemetry.data.TelemetryData
 
 data class TireModel(
+    val steerAngle: Float = 0f,
     val tireSlipRatioFrontLeft: Float = 0f,
     val tireSlipRatioFrontRight: Float = 0f,
     val tireSlipRatioRearLeft: Float = 0f,
