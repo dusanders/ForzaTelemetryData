@@ -125,10 +125,9 @@ class TelemetryParser private constructor(
         val clutch = (parseBytesOrDefault(Byte::class).toInt() and 0xff) * 100 / 255
         val handbrake = (parseBytesOrDefault(Byte::class).toInt() and 0xff) * 100 / 255
         val gear = parseBytesOrDefault(Byte::class).toInt() and 0xff
-        val steer = (parseBytesOrDefault(Byte::class).toInt() and 0xff) * 100 / 127
-        val normalizedDrivingLine = (parseBytesOrDefault(Byte::class).toInt() and 0xff) * 100 / 127
-        val normalizedAIBrakeDifference =
-            (parseBytesOrDefault(Byte::class).toInt() and 0xff) * 100 / 127
+        val steer = parseBytesOrDefault(Byte::class).toInt()
+        val normalizedDrivingLine = parseBytesOrDefault(Byte::class).toInt()
+        val normalizedAIBrakeDifference = parseBytesOrDefault(Byte::class).toInt()
         var tireWearFrontLeft = 0f
         var tireWearFrontRight = 0f
         var tireWearRearLeft = 0f
